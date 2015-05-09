@@ -1,27 +1,24 @@
 package il.co.quix.afeka.hpet;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.lang.reflect.Array;
 
-
-public class MainActivity extends ActionBarActivity {
+public class ReportedDogs extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String[] mylist = {"dog1","dog2"};
+        setContentView(R.layout.activity_reported_dogs);
+        String[] mylist = {"case1","case2"};
         setContentView(R.layout.activity_main);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, mylist);
-        ListView listView = (ListView) findViewById(R.id.adopt_dogs_list);
+        ListView listView = (ListView) findViewById(R.id.reported_dogs_list);
         listView.setAdapter(adapter);
     }
 
@@ -42,9 +39,7 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
-            Intent intent = new Intent(this, LoginV.class);
-            startActivity(intent);
-
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

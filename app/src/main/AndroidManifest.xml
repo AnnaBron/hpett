@@ -41,6 +41,10 @@
             android:name=".LoginV"
             android:label="@string/title_activity_login_v" >
         </activity>
+        <activity
+            android:name=".ReportedDogs"
+            android:label="@string/title_activity_reported_dogs" >
+        </activity>
     </application>
 
 </manifest>
