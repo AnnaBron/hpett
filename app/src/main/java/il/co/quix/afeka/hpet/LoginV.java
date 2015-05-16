@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class LoginV extends ActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class LoginV extends MainActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,8 @@ import java.lang.reflect.Array;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +47,14 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_login) {
             Intent intent = new Intent(this, LoginV.class);
             startActivity(intent);
-
+        } else if(id == R.id.reported_dogs_list){
+            Intent intent = new Intent(this,ReportedDogs.class);
+            startActivity(intent);
+        } else if(id == R.id.report_dog){
+            Intent intent = new Intent(this,ReportForDog.class);
+            startActivity(intent);
         }
+
 
         return super.onOptionsItemSelected(item);
     }

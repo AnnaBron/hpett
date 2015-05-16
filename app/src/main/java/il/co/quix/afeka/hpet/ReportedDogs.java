@@ -8,40 +8,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
-public class ReportedDogs extends ActionBarActivity {
+public class ReportedDogs extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reported_dogs);
         String[] mylist = {"case1","case2"};
-        setContentView(R.layout.activity_main);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, mylist);
         ListView listView = (ListView) findViewById(R.id.reported_dogs_list);
         listView.setAdapter(adapter);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_login) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

@@ -45,6 +45,10 @@
             android:name=".ReportedDogs"
             android:label="@string/title_activity_reported_dogs" >
         </activity>
+        <activity
+            android:name=".ReportForDog"
+            android:label="@string/title_activity_report_for_dog" >
+        </activity>
     </application>
 
 </manifest>
