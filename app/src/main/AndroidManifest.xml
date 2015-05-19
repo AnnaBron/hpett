@@ -53,6 +53,10 @@
             android:name=".addOrUpdate"
             android:label="@string/title_activity_add_or_update" >
         </activity>
+        <activity
+            android:name=".UpdateOrDelet"
+            android:label="@string/title_activity_update_or_delet" >
+        </activity>
     </application>
 
 </manifest>
