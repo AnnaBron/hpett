@@ -11,5 +11,6 @@
     <string name="title_activity_reported_dogs">כלבים משוטטים</string>
     <string name="title_activity_report_for_dog">ReportForDog</string>
     <string name="reportAddress">כתובת דיווח</string>
+    <string name="title_activity_add_or_update">addOrUpdate</string>
 
 </resources>
