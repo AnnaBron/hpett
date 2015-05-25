@@ -7,4 +7,5 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/report_dog" android:title="@string/report_dog"
         android:orderInCategory="100" app:showAsAction="never" />
+
 </menu>

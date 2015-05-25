@@ -14,5 +14,6 @@
     <string name="title_activity_add_or_update">addOrUpdate</string>
     <string name="title_activity_update_or_delet">UpdateOrDelet</string>
     <string name="title_activity_update_delet_main">UpdateDeletMain</string>
+    <string name="title_activity_about_us">about_us</string>
 
 </resources>

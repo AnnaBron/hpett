@@ -53,7 +53,12 @@ public class MainActivity extends ActionBarActivity {
         } else if(id == R.id.report_dog){
             Intent intent = new Intent(this,ReportForDog.class);
             startActivity(intent);
+        } else {
+            Intent intent = new Intent(this,about_us.class);
+            startActivity(intent);
         }
+
+
 
 
         return super.onOptionsItemSelected(item);
