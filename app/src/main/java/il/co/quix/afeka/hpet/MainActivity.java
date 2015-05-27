@@ -47,13 +47,16 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_login) {
             Intent intent = new Intent(this, LoginV.class);
             startActivity(intent);
+        } else if(id == R.id.adopt_dogs_list){
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
         } else if(id == R.id.reported_dogs_list){
             Intent intent = new Intent(this,ReportedDogs.class);
             startActivity(intent);
         } else if(id == R.id.report_dog){
             Intent intent = new Intent(this,ReportForDog.class);
             startActivity(intent);
-        } else {
+        } else if(id == R.id.about_us_page){
             Intent intent = new Intent(this,about_us.class);
             startActivity(intent);
         }
