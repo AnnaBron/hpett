@@ -4,13 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.lang.reflect.Array;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -45,7 +41,7 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
-            Intent intent = new Intent(this, LoginV.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         } else if(id == R.id.adopt_dogs_list){
             Intent intent = new Intent(this,MainActivity.class);
@@ -56,7 +52,8 @@ public class MainActivity extends ActionBarActivity {
         } else if(id == R.id.report_dog){
             Intent intent = new Intent(this,ReportForDog.class);
             startActivity(intent);
-        } else if(id == R.id.about_us_page){
+        }
+        else if(id == R.id.about_us_page){
             Intent intent = new Intent(this,about_us.class);
             startActivity(intent);
         }

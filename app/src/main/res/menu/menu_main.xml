@@ -2,11 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/action_login" android:title="@string/action_login"
-        app:showAsAction="withText|ifRoom"/>
+        android:showAsAction="withText|ifRoom"/>
+    <item android:id="@+id/adopt_dogs_list" android:title="@string/dogs_for_adopt"
+        android:orderInCategory="100" android:showAsAction="never" />
     <item android:id="@+id/reported_dogs_list" android:title="@string/action_menu"
-        android:orderInCategory="100" app:showAsAction="never" />
+        android:orderInCategory="100" android:showAsAction="never" />
     <item android:id="@+id/report_dog" android:title="@string/report_dog"
-        android:orderInCategory="100" app:showAsAction="never" />
-
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/about_us_page" android:title="@string/title_activity_about_us"
+        android:orderInCategory="100" android:showAsAction="never" />
 </menu>
-

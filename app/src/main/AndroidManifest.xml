@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -36,35 +37,35 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+        <!--
+                <activity
+                    android:name=".LoginActivity"
+                    android:label="@string/title_activity_login_v" >
+                </activity> -->
+                <activity
+                    android:name=".ReportedDogs"
+                    android:label="@string/title_activity_reported_dogs" >
+                </activity>
+                <activity
+                    android:name=".ReportForDog"
+                    android:label="@string/title_activity_report_for_dog" >
+                </activity>
+                <activity
+                    android:name=".addOrUpdate"
+                    android:label="@string/title_activity_add_or_update" >
+                </activity>
+                <activity
+                    android:name=".UpdateOrDelet"
+                    android:label="@string/title_activity_update_or_delet" >
+                </activity>
+                <activity
+                    android:name=".UpdateDeletMain"
+                    android:label="@string/title_activity_update_delet_main" >
+                </activity>
+                <activity
+                    android:name=".about_us"
+                    android:label="@string/title_activity_about_us" >
+                </activity>
+            </application>
 
-        <activity
-            android:name=".LoginV"
-            android:label="@string/title_activity_login_v" >
-        </activity>
-        <activity
-            android:name=".ReportedDogs"
-            android:label="@string/title_activity_reported_dogs" >
-        </activity>
-        <activity
-            android:name=".ReportForDog"
-            android:label="@string/title_activity_report_for_dog" >
-        </activity>
-        <activity
-            android:name=".addOrUpdate"
-            android:label="@string/title_activity_add_or_update" >
-        </activity>
-        <activity
-            android:name=".UpdateOrDelet"
-            android:label="@string/title_activity_update_or_delet" >
-        </activity>
-        <activity
-            android:name=".UpdateDeletMain"
-            android:label="@string/title_activity_update_delet_main" >
-        </activity>
-        <activity
-            android:name=".about_us"
-            android:label="@string/title_activity_about_us" >
-        </activity>
-    </application>
-
-</manifest>
+        </manifest>
