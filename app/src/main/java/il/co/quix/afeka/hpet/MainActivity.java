@@ -37,17 +37,20 @@ public class MainActivity extends ActionBarActivity {
     public DogsAdapter adapter;
     private boolean debug = false;
     private String res = null;
+    UserSessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        session = new UserSessionManager(getApplicationContext());
         // this is fix the exeption for network calls
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+
+        session.isUserLoggedIn();
 
         ArrayList<Dog> arrayOfDogs = new ArrayList<Dog>();
         this.adapter = new DogsAdapter(this, arrayOfDogs);
@@ -55,7 +58,6 @@ public class MainActivity extends ActionBarActivity {
         listView.setAdapter(adapter);
 
         if(this.debug == true){
-            arrayOfDogs.add(new Dog("55","Niso"));
             this.updateAdapterDogs(arrayOfDogs);
         } else {
             new HttpAsyncTask().execute("http://hpet.quix.co.il/api/dogs");
@@ -66,9 +68,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void updateAdapterDogs(ArrayList<Dog> dogs){
-        // this.adapter.clear();
+        adapter.clear();
         adapter.addAll(dogs);
-        Log.d("NISO","it works");
     }
 
 
@@ -85,22 +86,27 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        Intent intent;
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
-            Intent intent = new Intent(this, LoginV.class);
+            if(session.checkLogin()){
+                intent = new Intent(this, LoginV.class);
+            } else {
+                intent = new Intent(this,ReportedDogs.class);
+            }
+
             startActivity(intent);
         } else if(id == R.id.adopt_dogs_list){
-            Intent intent = new Intent(this,MainActivity.class);
+            intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         } else if(id == R.id.reported_dogs_list){
-            Intent intent = new Intent(this,ReportedDogs.class);
+            intent = new Intent(this,ReportedDogs.class);
             startActivity(intent);
         } else if(id == R.id.report_dog){
-            Intent intent = new Intent(this,ReportForDog.class);
+            intent = new Intent(this,ReportForDog.class);
             startActivity(intent);
         } else if(id == R.id.about_us_page){
-            Intent intent = new Intent(this,about_us.class);
+            intent = new Intent(this,about_us.class);
             startActivity(intent);
         }
 
@@ -110,29 +116,6 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-/*    private class fetchDogsList extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-
-            RestClient dogsRecource = new RestClient("http://hpet.quix.co.il/api/dogs");
-            // startActivity(new Intent(this, RestClient.class));
-            try {
-                dogsRecource.Execute(RestClient.RequestMethod.GET);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            String response = dogsRecource.getResponse();
-            Log.d("MAIN", response);
-            return dogsRecource.getResponse();
-
-        }
-
-        // onPostExecute displays the results of the AsyncTask.
-        @Override
-        protected void onPostExecute(String result) {
-            Log.d("MAIN", result);
-        }
-    }*/
 
     public static String GET(String url){
         InputStream inputStream = null;
