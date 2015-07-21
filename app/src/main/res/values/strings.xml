@@ -9,12 +9,14 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_login_v">התחברות מתנדב</string>
     <string name="title_activity_reported_dogs">כלבים משוטטים</string>
-    <string name="title_activity_report_for_dog">ReportForDog</string>
+    <string name="title_activity_report_for_dog">דוח על כלב</string>
     <string name="reportAddress">כתובת דיווח</string>
     <string name="title_activity_add_or_update">addOrUpdate</string>
     <string name="title_activity_update_or_delet">UpdateOrDelet</string>
     <string name="title_activity_update_delet_main">UpdateDeletMain</string>
     <string name="title_activity_about_us">עלינו</string>
     <string name="dogs_for_adopt">כלבים לאימוץ</string>
+    <string name="title_activity_volenteer">מתנדב</string>
+    <string name="loged_out">התנתק</string>
 
 </resources>

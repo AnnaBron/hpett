@@ -50,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
-        session.isUserLoggedIn();
+        // session.isUserLoggedIn();
 
         ArrayList<Dog> arrayOfDogs = new ArrayList<Dog>();
         this.adapter = new DogsAdapter(this, arrayOfDogs);
@@ -76,7 +76,11 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        if(!session.isUserLoggedIn()){
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+        } else {
+            getMenuInflater().inflate(R.menu.menu_volenteer, menu);
+        }
         return true;
     }
 
@@ -89,12 +93,11 @@ public class MainActivity extends ActionBarActivity {
         Intent intent;
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
-            if(session.checkLogin()){
+            if(!session.isUserLoggedIn()){
                 intent = new Intent(this, LoginV.class);
             } else {
-                intent = new Intent(this,ReportedDogs.class);
+                intent = new Intent(this,Volenteer.class);
             }
-
             startActivity(intent);
         } else if(id == R.id.adopt_dogs_list){
             intent = new Intent(this,MainActivity.class);
@@ -107,6 +110,10 @@ public class MainActivity extends ActionBarActivity {
             startActivity(intent);
         } else if(id == R.id.about_us_page){
             intent = new Intent(this,about_us.class);
+            startActivity(intent);
+        } else if(id == R.id.loged_out){
+            session.logoutUser();
+            intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         }
 

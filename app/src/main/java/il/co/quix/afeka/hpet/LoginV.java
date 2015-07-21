@@ -351,7 +351,7 @@ public class LoginV extends MainActivity implements LoaderManager.LoaderCallback
                 LoginV.this.session.createUserLoginSession(mEmail,mPassword);
                 // TODO: create volenteer activity.
                 // Starting MainActivity
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                Intent i = new Intent(getApplicationContext(), Volenteer.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 // Add new Flag to start new Activity
