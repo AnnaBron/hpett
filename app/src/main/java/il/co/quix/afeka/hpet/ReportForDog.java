@@ -76,40 +76,40 @@ public class ReportForDog extends MainActivity implements View.OnClickListener {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
-/*
-    @Override
-    public void onPause() {
-        super.onPause();  // Always call the superclass method first
+    /*
+        @Override
+        public void onPause() {
+            super.onPause();  // Always call the superclass method first
 
-        // Release the Camera because we don't need it when paused
-        // and other activities might need to use it.
-        if (mCamera != null) {
-            mCamera.release();
-            mCamera = null;
+            // Release the Camera because we don't need it when paused
+            // and other activities might need to use it.
+            if (mCamera != null) {
+                mCamera.release();
+                mCamera = null;
+            }
+        }
+
+        @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+
+        // Get the Camera instance as the activity achieves full user focus
+        if (mCamera == null) {
+            initializeCamera(); // Local method to handle camera init
         }
     }
 
+
+    */
     @Override
-public void onResume() {
-    super.onResume();  // Always call the superclass method first
+    protected void onStop() {
+        super.onStop();  // Always call the superclass method first
 
-    // Get the Camera instance as the activity achieves full user focus
-    if (mCamera == null) {
-        initializeCamera(); // Local method to handle camera init
-    }
-}
-
-
-*/
-@Override
-protected void onStop() {
-    super.onStop();  // Always call the superclass method first
-
-    // Save the note's current draft, because the activity is stopping
-    // and we want to be sure the current note progress isn't lost.
-    ContentValues values = new ContentValues();
-    //values.put(NotePad.Notes.COLUMN_NAME_NOTE, commentsEdit.getText());
-    //values.put(NotePad.Notes.COLUMN_NAME_TITLE,);
+        // Save the note's current draft, because the activity is stopping
+        // and we want to be sure the current note progress isn't lost.
+        ContentValues values = new ContentValues();
+        //values.put(NotePad.Notes.COLUMN_NAME_NOTE, commentsEdit.getText());
+        //values.put(NotePad.Notes.COLUMN_NAME_TITLE,);
 
     /*getContentResolver().update(
             mUri,    // The URI for the note to update.
@@ -118,7 +118,7 @@ protected void onStop() {
             null     // No WHERE columns are used.
     );
     */
-}
+    }
 
     @Override
     public void onDestroy() {

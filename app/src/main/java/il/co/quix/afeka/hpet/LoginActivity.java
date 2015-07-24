@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.os.Build;
 import android.provider.ContactsContract;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +26,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +51,7 @@ public class LoginActivity extends MainActivity implements LoaderManager.LoaderC
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
+    UserSessionManager session;
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -45,6 +61,7 @@ public class LoginActivity extends MainActivity implements LoaderManager.LoaderC
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private boolean loginSuccess;
 
 
 
@@ -52,6 +69,7 @@ public class LoginActivity extends MainActivity implements LoaderManager.LoaderC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loginv);
+        session = new UserSessionManager(getApplicationContext());
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -76,6 +94,13 @@ public class LoginActivity extends MainActivity implements LoaderManager.LoaderC
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    public void setLoginStatus(boolean status) {
+        this.loginSuccess = status;
+    }
+    public boolean getLoginStatus() {
+        return this.loginSuccess;
     }
 
     public void attemptLogin() {
@@ -280,24 +305,38 @@ public class LoginActivity extends MainActivity implements LoaderManager.LoaderC
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-
+            String s="";
             try {
-                // Simulate network access.
+                    HttpClient httpClient=new DefaultHttpClient();
+
+                    HttpPost httpPost=new HttpPost("http://hpet.quix.co.il/api/login");
+
+                    List<NameValuePair> list=new ArrayList<NameValuePair>();
+                    list.add(new BasicNameValuePair("user", mEmail));
+                    list.add(new BasicNameValuePair("pass",mPassword));
+                    httpPost.setEntity(new UrlEncodedFormEntity(list));
+                    HttpResponse httpResponse=  httpClient.execute(httpPost);
+
+                    HttpEntity httpEntity=httpResponse.getEntity();
+                    LoginV.this.setLoginStatus(Integer.parseInt(readResponse(httpResponse)) > 0 ? true : false);
+
                 Thread.sleep(2000);
+            } catch (IOException e) {
+                return false;
             } catch (InterruptedException e) {
                 return false;
             }
+            return true;
 
-            for (String credential : DUMMY_CREDENTIALS) {
+/*            for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
-            }
+            }*/
 
             // TODO: register the new account here.
-            return true;
         }
 
         @Override
@@ -305,7 +344,16 @@ public class LoginActivity extends MainActivity implements LoaderManager.LoaderC
             mAuthTask = null;
             showProgress(false);
 
-            if (success) {
+            if (LoginV.this.getLoginStatus()) {
+                LoginV.this.session.createUserLoginSession(mEmail,mPassword);
+                // TODO: create volenteer activity.
+                // Starting MainActivity
+                Intent i = new Intent(getApplicationContext(), Volenteer.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                // Add new Flag to start new Activity
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
@@ -317,6 +365,27 @@ public class LoginActivity extends MainActivity implements LoaderManager.LoaderC
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+
+        public String readResponse(HttpResponse res) {
+            InputStream is=null;
+            String return_text="";
+            try {
+                is=res.getEntity().getContent();
+                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(is));
+                String line="";
+                StringBuffer sb=new StringBuffer();
+                while ((line=bufferedReader.readLine())!=null)
+                {
+                    sb.append(line);
+                }
+                return_text=sb.toString();
+            } catch (Exception e)
+            {
+
+            }
+            return return_text;
+
         }
     }
 }
