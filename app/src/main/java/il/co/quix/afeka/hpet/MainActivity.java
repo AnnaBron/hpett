@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.util.Log;
 import android.view.MenuItem;
@@ -38,11 +39,13 @@ public class MainActivity extends ActionBarActivity {
     private boolean debug = false;
     private String res = null;
     UserSessionManager session;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         session = new UserSessionManager(getApplicationContext());
         // this is fix the exeption for network calls
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -75,6 +78,8 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // this.toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
+        // setSupportActionBar(toolbar);
         // Inflate the menu; this adds items to the action bar if it is present.
         if(!session.isUserLoggedIn()){
             getMenuInflater().inflate(R.menu.menu_main, menu);
