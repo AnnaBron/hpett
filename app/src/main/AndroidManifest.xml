@@ -14,7 +14,10 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -66,6 +69,10 @@
         <activity
             android:name=".Volenteer"
             android:label="@string/title_activity_volenteer" >
+        </activity>
+        <activity
+            android:name=".SearchDog"
+            android:label="@string/title_activity_search_dog" >
         </activity>
     </application>
 

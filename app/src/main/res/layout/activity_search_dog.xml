@@ -1,0 +1,117 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+android:layout_height="match_parent" android:gravity="center_horizontal"
+android:orientation="vertical" android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+tools:context="il.co.quix.afeka.hpet.LoginActivity">
+
+<!-- Login progress -->
+<ProgressBar android:id="@+id/search_progress" style="?android:attr/progressBarStyleLarge"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp" android:visibility="gone" />
+
+<ScrollView android:id="@+id/search_form" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:minHeight="440dp"
+            android:measureWithLargestChild="false"
+            android:longClickable="false">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="שם כלב"
+                android:id="@+id/freeText"
+                android:layout_gravity="right"
+                android:textSize="20dp"
+                android:textColorHint="@color/abc_search_url_text_pressed"
+                android:textColor="#ff1d1cff" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dogNameEdit"
+                android:text=""
+                android:autoText="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="אזור"
+                android:id="@+id/area"
+                android:layout_gravity="right"
+                android:textSize="20dp"
+                android:textColorHint="@color/abc_search_url_text_pressed"
+                android:textColor="#ff1d1cff" />
+
+            <Spinner
+                android:id="@+id/areaSelect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="סוג"
+                android:id="@+id/typeLabel"
+                android:layout_gravity="right"
+                android:textSize="20dp"
+                android:textColorHint="@color/abc_search_url_text_pressed"
+                android:textColor="#ff1d1cff" />
+            <Spinner
+                android:id="@+id/typeSelect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="גודל"
+                android:id="@+id/sizeLabel"
+                android:layout_gravity="right"
+                android:textSize="20dp"
+                android:textColorHint="@color/abc_search_url_text_pressed"
+                android:textColor="#ff1d1cff" />
+            <Spinner
+                android:id="@+id/sizeSelect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:text="חיפוש"
+            android:id="@+id/freeSearch"
+            android:layout_weight="0.06"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+</ScrollView>
+
+</LinearLayout>
+
+

@@ -108,7 +108,10 @@ public class MainActivity extends ActionBarActivity {
             intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         } else if(id == R.id.reported_dogs_list){
-            intent = new Intent(this,ReportedDogs.class);
+            intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+        } else if(id == R.id.action_search){
+            intent = new Intent(this,SearchDog.class);
             startActivity(intent);
         } else if(id == R.id.report_dog){
             intent = new Intent(this,ReportForDog.class);
