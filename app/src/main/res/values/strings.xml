@@ -18,7 +18,7 @@
     <string name="dogs_for_adopt">כלבים לאימוץ</string>
     <string name="title_activity_volenteer">מתנדב</string>
     <string name="loged_out">התנתק</string>
-    <string name="title_activity_search_dog">SearchDog</string>
+    <string name="title_activity_search_dog">חיפוש כלב</string>
     <string-array name="dogs_type">
         <item></item>
         <item>פודל</item>

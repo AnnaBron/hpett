@@ -63,7 +63,7 @@ public class SearchDog extends MainActivity {
         // Specify the layout to use when the list of choices appears
         adapterSize.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        spinner1.setAdapter(adapterSize);
+        spinner3.setAdapter(adapterSize);
 
         Button mEmailSignInButton = (Button) findViewById(R.id.freeSearch);
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
