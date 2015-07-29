@@ -1,25 +1,45 @@
 package il.co.quix.afeka.hpet;
 
         import android.content.ContentValues;
+        import android.content.Context;
         import android.content.Intent;
         import android.graphics.Bitmap;
+        import android.location.Address;
+        import android.location.Criteria;
+        import android.location.Geocoder;
+        import android.location.Location;
+        import android.location.LocationListener;
+        import android.location.LocationManager;
         import android.provider.MediaStore;
         import android.support.v7.app.ActionBarActivity;
         import android.os.Bundle;
+        import android.util.Log;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageView;
+        import android.widget.TextView;
+
+        import java.io.IOException;
+        import java.util.List;
+        import java.util.Locale;
 
 
-public class ReportForDog extends MainActivity implements View.OnClickListener {
+public class ReportForDog extends MainActivity implements View.OnClickListener,LocationListener {
 
     private Button reportBtn;
     private Button captureBtn;
     private EditText commentsEdit;
     private ImageView previewImage;
+    protected LocationManager locationManager;
+    protected LocationListener locationListener;
+    protected Context context;
+    Double lat;
+    Double lng;
+    String address;
+    TextView addressView;
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -34,7 +54,16 @@ public class ReportForDog extends MainActivity implements View.OnClickListener {
         previewImage = (ImageView) findViewById(R.id.previewImage);
 
         captureBtn.setOnClickListener(this);
+
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        List<String> providers  = locationManager.getProviders(true);
+
+        // Log.d("Latitude", "disable");
+
     }
+
+
 
     @Override
     protected void onStart() {
@@ -126,5 +155,51 @@ public class ReportForDog extends MainActivity implements View.OnClickListener {
 
         // Stop method tracing that the activity started during onCreate()
         android.os.Debug.stopMethodTracing();
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+       //  txtLat = (TextView) findViewById(R.id.textview1);
+        this.lat = location.getLatitude();
+        this.lng = location.getLongitude();
+        this.address = getAddress();
+        addressView = (TextView) findViewById(R.id.address);
+        addressView.setText(this.address);
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Log.d("Latitude", "disable");
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Log.d("Latitude","enable");
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        Log.d("Latitude","status");
+    }
+
+    private String getAddress(){
+        String provider = locationManager.getBestProvider(new Criteria(), true);
+        Location locations = locationManager.getLastKnownLocation(provider);
+        List<String>  providerList = locationManager.getAllProviders();
+        if(null!=locations && null!=providerList && providerList.size()>0){
+            double longitude = locations.getLongitude();
+            double latitude = locations.getLatitude();
+            Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+            try {
+                List<Address> listAddresses = geocoder.getFromLocation(latitude, longitude, 1);
+                if(null!=listAddresses&&listAddresses.size()>0){
+                    return listAddresses.get(0).getAddressLine(0) + "," + listAddresses.get(0).getAddressLine(1);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return null;
     }
 }

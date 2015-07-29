@@ -8,6 +8,58 @@
     android:id="@+id/report_dog">
 
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/previewImage"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/bright_foreground_material_dark"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/common_full_open_on_phone"
+            android:minHeight="300dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/address"
+            android:layout_gravity="right"
+            android:autoText="true"
+            android:textStyle="bold|italic"
+            android:textAlignment="gravity"
+            android:textSize="40px"
+            android:textIsSelectable="false"
+            android:gravity="right"
+            android:singleLine="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="צלם תמונה"
+            android:id="@+id/captureBtn"
+            android:layout_alignBaseline="@+id/commentsEdit"
+            android:layout_alignBottom="@+id/commentsEdit"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/commentsEdit"
+            android:layout_above="@+id/sendReportBtn"
+            android:layout_centerHorizontal="true"
+            android:hint="הערות"
+            android:layout_weight="0.50" />
+    </LinearLayout>
+
     <Button
         android:layout_width="352dp"
         android:layout_height="wrap_content"
@@ -17,40 +69,17 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:visibility="visible" />
+        android:visibility="visible" /><![CDATA[
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/previewImage"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/bright_foreground_material_dark"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/common_full_open_on_phone"
-        android:minHeight="300dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="צלם תמונה"
-        android:id="@+id/captureBtn"
-        android:layout_weight="0.06"
-        android:layout_below="@+id/previewImage"
-        android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/commentsEdit"
-        android:layout_above="@+id/sendReportBtn"
-        android:layout_centerHorizontal="true"
-        android:hint="הערות" /><![CDATA[
+
 
 
 
     android:singleLine="true" />
+
+
 
 ]]>
 </RelativeLayout>
