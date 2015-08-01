@@ -20,9 +20,10 @@
                 android:id="@+id/dogName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="dogName"
                 android:layout_gravity="center_vertical|bottom|right"
-                android:textSize="30dp"
+                android:textSize="20dp"
                 android:textIsSelectable="true" />
 
             <TextView

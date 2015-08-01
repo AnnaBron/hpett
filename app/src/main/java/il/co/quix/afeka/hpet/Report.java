@@ -17,6 +17,7 @@ public class Report {
     public String description;
     public String dogId;
     public String photo;
+    public String address;
 
 
 
@@ -30,6 +31,7 @@ public class Report {
             this.lat= object.getString("lat");
             this.lng= object.getString("lng");
             this.dogId = object.getString("dog_id");
+            this.address = object.getString("address");
 
         } catch (JSONException e) {
             e.printStackTrace();

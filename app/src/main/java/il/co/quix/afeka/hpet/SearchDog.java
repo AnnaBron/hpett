@@ -4,10 +4,16 @@ package il.co.quix.afeka.hpet;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.LoaderManager;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -31,12 +37,18 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchDog extends MainActivity {
+public class SearchDog extends MainActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    private View sProgressView;
+    private View sFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_dog);
+
+        sFormView =  (View) findViewById(R.id.search_form);
+        sProgressView =  (View) findViewById(R.id.search_progress);
 
         Spinner spinner1 = (Spinner) findViewById(R.id.areaSelect);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -80,6 +92,7 @@ public class SearchDog extends MainActivity {
 
             private void doSearch() {
                // showProgress(true);
+                showProgress(true);
                 EditText dogName = (EditText)findViewById(R.id.dogNameEdit);
                 Spinner dogArea = (Spinner)findViewById(R.id.areaSelect);
                 Spinner dogType = (Spinner)findViewById(R.id.typeSelect);
@@ -95,18 +108,87 @@ public class SearchDog extends MainActivity {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    public void showProgress(final boolean show) {
+        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+        // for very easy animations. If available, use these APIs to fade-in
+        // the progress spinner.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+            sFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            sFormView.animate().setDuration(shortAnimTime).alpha(
+                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    sFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                }
+            });
+
+            sProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            sProgressView.animate().setDuration(shortAnimTime).alpha(
+                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    sProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                }
+            });
+        } else {
+            // The ViewPropertyAnimator APIs are not available, so simply show
+            // and hide the relevant UI components.
+            sProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            sFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+        }
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(this,
+                // Retrieve data rows for the device user's 'profile' contact.
+                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
+                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
+
+                // Select only email addresses.
+                ContactsContract.Contacts.Data.MIMETYPE +
+                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
+                .CONTENT_ITEM_TYPE},
+
+                // Show primary email addresses first. Note that there won't be
+                // a primary email address if the user hasn't specified one.
+                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+        // addEmailsToAutoComplete(emails);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> cursorLoader) {
+
+    }
+
+    private interface ProfileQuery {
+        String[] PROJECTION = {
+                ContactsContract.CommonDataKinds.Email.ADDRESS,
+                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
+        };
+    }
+
     public class SearchTask extends AsyncTask<Void, Void, Boolean> {
 
         private String dogNameSearch;
         private Long dogAreaId;
         private Long dogTypeId;
         private Long dogSizeId;
+        private String result;
 
         SearchTask(String dogName, Long dogArea , Long dogType ,Long dogSize) {
             dogNameSearch = dogName;
             dogAreaId = dogArea;
             dogTypeId = dogType;
             dogSizeId = dogSize;
+            result = null;
         }
 
         @Override
@@ -125,7 +207,10 @@ public class SearchDog extends MainActivity {
                 list.add(new BasicNameValuePair("size",dogSizeId.toString()));
                 httpPost.setEntity(new UrlEncodedFormEntity(list));
                 HttpResponse httpResponse=  httpClient.execute(httpPost);
+                result = readResponse(httpResponse);
                 Log.d("MAZUZ", readResponse(httpResponse));
+
+
                 HttpEntity httpEntity=httpResponse.getEntity();
                 // SearchDog.this.setLoginStatus(Integer.parseInt(readResponse(httpResponse)) > 0 ? true : false);
 
@@ -150,6 +235,11 @@ public class SearchDog extends MainActivity {
 
         @Override
         protected void onPostExecute(final Boolean success) {
+            if(success){
+                Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                main.putExtra("search_result",result);
+                startActivity(main);
+            }
 
         }
 
@@ -178,5 +268,6 @@ public class SearchDog extends MainActivity {
             return return_text;
 
         }
+
     }
 }

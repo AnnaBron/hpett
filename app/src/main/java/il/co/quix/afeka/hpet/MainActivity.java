@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -58,10 +59,30 @@ public class MainActivity extends ActionBarActivity {
         ArrayList<Dog> arrayOfDogs = new ArrayList<Dog>();
         this.adapter = new DogsAdapter(this, arrayOfDogs);
         ListView listView = (ListView) findViewById(R.id.adopt_dogs_list);
+        TextView search_label = (TextView) findViewById(R.id.search_result_label);
+
+
         listView.setAdapter(adapter);
 
-        if(this.debug == true){
-            this.updateAdapterDogs(arrayOfDogs);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String result = extras.getString("search_result");
+            if(!result.equals("null")) {
+                JSONArray jsonArray = null;
+                try {
+                    jsonArray = new JSONArray(result);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                ArrayList<Dog> dogsResult = Dog.fromJson(jsonArray);
+
+                search_label.setText("תוצאות חיפוש");
+                updateAdapterDogs(dogsResult);
+            } else {
+                search_label.setText("לא נמצאו תוצאות");
+                updateAdapterDogs(arrayOfDogs);
+
+            }
         } else {
             new HttpAsyncTask().execute("http://hpet.quix.co.il/api/dogs");
         }
@@ -188,13 +209,13 @@ public class MainActivity extends ActionBarActivity {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
+            // Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
            //  etResponse.setText(result);
             JSONArray jsonArray = null;
             try {
                 jsonArray = new JSONArray(result);
                 ArrayList<Dog> newDogs = Dog.fromJson(jsonArray);
-                Log.d("NISO",result);
+                // Log.d("NISO",result);
                 MainActivity.this.updateAdapterDogs(newDogs);
 
             } catch (JSONException e) {

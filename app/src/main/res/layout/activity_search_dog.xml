@@ -15,6 +15,7 @@ tools:context="il.co.quix.afeka.hpet.LoginActivity">
 <ScrollView android:id="@+id/search_form" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">

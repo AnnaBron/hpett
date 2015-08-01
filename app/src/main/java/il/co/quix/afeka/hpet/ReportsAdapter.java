@@ -41,8 +41,8 @@ public class ReportsAdapter extends ArrayAdapter<Report> {
         ImageView reportPhoto = (ImageView) convertView.findViewById(R.id.reportPhoto);
         // Populate the data into the template view using the data object
         // update view
-        reportTitle.setText(report.title);
-        reportDescription.setText(report.description);
+        reportTitle.setText(report.description);
+        reportDescription.setText(report.address);
         reportPhoto.setImageBitmap(this.getBitmapFromURL(report.photo));
         // Return the completed view to render on screen
         return convertView;

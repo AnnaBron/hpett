@@ -12,8 +12,24 @@
         ></include>
 -->
 
-    <ListView android:layout_width="fill_parent"
-        android:layout_height="fill_parent" android:id="@+id/adopt_dogs_list"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/search_result_label"
+            android:gravity="right"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:textColor="#ffff6529" />
+
+        <ListView android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:id="@+id/adopt_dogs_list"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+    </LinearLayout>
 </RelativeLayout>
