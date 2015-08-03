@@ -162,21 +162,9 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
        addDogTask = new AddReportTask(imageStr, address ,commentsEdit.getText().toString(),lat,lng);
        addDogTask.execute((Void) null);
 
-
-
-
         }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();  // Always call the superclass method first
-
-       /* captureBtn.setText("Blah!");
-        reportBtn.setVisibility(View.INVISIBLE);
-        previewImage.setImageResource(R.mipmap.ic_launcher);*/
-
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -191,7 +179,6 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
             byte [] byte_arr = stream.toByteArray();
             imageStr = Base64.encodeToString(byte_arr,Base64.DEFAULT);
 
-            //TODO get GPS data
         }
     }
 
@@ -213,31 +200,7 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
-    /*
-        @Override
-        public void onPause() {
-            super.onPause();  // Always call the superclass method first
 
-            // Release the Camera because we don't need it when paused
-            // and other activities might need to use it.
-            if (mCamera != null) {
-                mCamera.release();
-                mCamera = null;
-            }
-        }
-
-        @Override
-    public void onResume() {
-        super.onResume();  // Always call the superclass method first
-
-        // Get the Camera instance as the activity achieves full user focus
-        if (mCamera == null) {
-            initializeCamera(); // Local method to handle camera init
-        }
-    }
-
-
-    */
     @Override
     protected void onStop() {
         super.onStop();  // Always call the superclass method first

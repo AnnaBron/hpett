@@ -47,12 +47,13 @@ public class save_dog extends MainActivity implements View.OnClickListener {
     }
 
     private void setData() {
+       // addressTxt.setText("last adreess");
         //   sendersComments.setText(dog.description);
         // dogsImage.setImageBitmap(this.getBitmapFromURL(dog.photo));
     }
 
     private void getData() {
-
+    // TODO get data from server -> image, adress,comments
 
     }
 
@@ -86,7 +87,8 @@ public class save_dog extends MainActivity implements View.OnClickListener {
         // not finished
         try
         {
-            String url = "waze://?ll=<lat>,<lon>&navigate=yes";
+            String lat = " ",lng = " ";
+            String url = String.format("waze://?ll=<%s>,<%s>&navigate=yes",lat,lng);
             Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse(url) );
             startActivity( intent );
         }
