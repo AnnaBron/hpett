@@ -1,12 +1,16 @@
 package il.co.quix.afeka.hpet;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -27,6 +31,20 @@ public class Volenteer extends MainActivity {
         this.vadapter = new ReportsAdapter(this, arrayOfReport);
         ListView listView = (ListView) findViewById(R.id.report_dogs_list);
         listView.setAdapter(vadapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(Volenteer.this,
+                        "Item in position " + position + " clicked", Toast.LENGTH_LONG).show();
+                Log.d("NI","NIS");
+                Report reportItem = vadapter.getItem(position);
+                // Intent intent = new Intent(Volenteer.this,LoginV.class);
+                Intent intent = new Intent(Volenteer.this,ReportView.class);
+                // intent.putExtra("report", );
+                startActivity(intent);
+            }
+        });
         new HttpAsyncTask().execute("http://hpet.quix.co.il/api/reports");
     }
     public void updateAdapterReports(ArrayList<Report> reports){

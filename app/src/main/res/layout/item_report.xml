@@ -4,6 +4,7 @@
     android:longClickable="false"
     android:textAlignment="inherit"
     android:weightSum="1"
+    android:descendantFocusability="blocksDescendants"
     android:touchscreenBlocksFocus="false"
     android:gravity="right">
 

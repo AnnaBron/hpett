@@ -5,6 +5,7 @@
     android:textAlignment="inherit"
     android:weightSum="1"
     android:touchscreenBlocksFocus="false"
+    android:descendantFocusability="blocksDescendants"
     android:gravity="right">
 
     <RelativeLayout
@@ -50,7 +51,7 @@
         android:paddingEnd="10dp"
         android:cropToPadding="false"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="4dp" />
 

@@ -93,11 +93,11 @@ public class SearchDog extends MainActivity implements LoaderManager.LoaderCallb
             private void doSearch() {
                // showProgress(true);
                 showProgress(true);
-                EditText dogName = (EditText)findViewById(R.id.dogNameEdit);
+               //  EditText dogName = (EditText)findViewById(R.id.dogNameEdit);
                 Spinner dogArea = (Spinner)findViewById(R.id.areaSelect);
                 Spinner dogType = (Spinner)findViewById(R.id.typeSelect);
                 Spinner dogSize = (Spinner)findViewById(R.id.sizeSelect);
-                mAuthTask = new SearchTask(dogName.getText().toString(),
+                mAuthTask = new SearchTask(null,
                         dogArea.getSelectedItemId(),
                         dogType.getSelectedItemId(),
                         dogSize.getSelectedItemId());

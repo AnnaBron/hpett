@@ -28,7 +28,7 @@ public class ReportedDogs extends MainActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-                Intent intent = new Intent(ReportedDogs.this,save_dog.class);
+                Intent intent = new Intent(ReportedDogs.this,ReportView.class);
 
                 // i.putExtra(ID_EXTRA,String.valueOf(i));
                 startActivity(intent);

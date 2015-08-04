@@ -30,17 +30,6 @@ tools:context="il.co.quix.afeka.hpet.LoginActivity">
             android:measureWithLargestChild="false"
             android:longClickable="false">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="שם כלב"
-                android:id="@+id/freeText"
-                android:layout_gravity="right"
-                android:textSize="20dp"
-                android:textColorHint="@color/abc_search_url_text_pressed"
-                android:textColor="#ff1d1cff" />
-
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

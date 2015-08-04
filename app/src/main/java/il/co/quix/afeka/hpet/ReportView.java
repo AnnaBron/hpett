@@ -20,9 +20,9 @@ import java.net.URL;
 
 
 /**
- * Created by ард on 02/08/2015.
+ * Created by пїЅпїЅпїЅ on 02/08/2015.
  */
-public class save_dog extends MainActivity implements View.OnClickListener {
+public class ReportView extends MainActivity implements View.OnClickListener {
 
     private Button wazeBtn;
     private EditText sendersComments;
@@ -31,17 +31,17 @@ public class save_dog extends MainActivity implements View.OnClickListener {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.save_dog);
+         setContentView(R.layout.save_dog);
 
-        wazeBtn = (Button) findViewById(R.id.wazeBtn);
-        sendersComments = (EditText) findViewById(R.id.sendersComments);
-        addressTxt = (EditText) findViewById(R.id.addressTxt);
-        dogsImage = (ImageView) findViewById(R.id.dogsImage);
+         wazeBtn = (Button) findViewById(R.id.wazeBtn);
+         sendersComments = (EditText) findViewById(R.id.sendersComments);
+         addressTxt = (EditText) findViewById(R.id.addressTxt);
+         dogsImage = (ImageView) findViewById(R.id.dogsImage);
 
-        getData();
-        setData();
+            getData();
+            setData();
 
-        wazeBtn.setOnClickListener(this);
+         wazeBtn.setOnClickListener(this);
 
 
     }
