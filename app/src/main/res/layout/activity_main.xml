@@ -25,7 +25,8 @@
             android:gravity="right"
             android:textSize="26dp"
             android:textStyle="bold"
-            android:textColor="#ffff6529" />
+            android:textColor="#ffff6529"
+            android:text="כלבים לאימוץ" />
 
         <ListView android:layout_width="fill_parent"
             android:layout_height="fill_parent" android:id="@+id/adopt_dogs_list"

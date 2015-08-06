@@ -10,7 +10,7 @@
     <string name="title_activity_login_v">התחברות מתנדב</string>
     <string name="title_activity_reported_dogs">כלבים משוטטים</string>
     <string name="title_activity_report_for_dog">דוח על כלב</string>
-    <string name="title_activity_report_view">דעמוד דיווח</string>
+    <string name="title_activity_report_view">דעמוד דיוו</string>
     <string name="reportAddress">כתובת דיווח</string>
     <string name="title_activity_add_or_update">addOrUpdate</string>
     <string name="title_activity_update_or_delet">UpdateOrDelet</string>

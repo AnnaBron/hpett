@@ -55,14 +55,6 @@
             android:label="@string/title_activity_report_for_dog" >
         </activity>
         <activity
-            android:name=".UpdateOrDelet"
-            android:label="@string/title_activity_update_or_delet" >
-        </activity>
-        <activity
-            android:name=".UpdateDeletMain"
-            android:label="@string/title_activity_update_delet_main" >
-        </activity>
-        <activity
             android:name=".about_us"
             android:label="@string/title_activity_about_us" >
         </activity>

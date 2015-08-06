@@ -64,6 +64,18 @@ public class MainActivity extends ActionBarActivity {
 
         listView.setAdapter(adapter);
 
+        // this is how we know what to do when item list is clicked
+        // listView.setOnItemClickListener(OnListClick);
+//        listView.setOnItemClickListener(new DogsAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(DogsAdapter parent, View view, int position, long id) {
+//                Intent intent = new Intent(MainActivity.this, adopted_dog.class);
+//
+//                // i.putExtra(ID_EXTRA,String.valueOf(i));
+//                startActivity(intent);
+//            }
+//        });
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String result = extras.getString("search_result");

@@ -1,15 +1,19 @@
 package il.co.quix.afeka.hpet;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,6 +48,20 @@ public class ReportsAdapter extends ArrayAdapter<Report> {
         reportTitle.setText(report.description);
         reportDescription.setText(report.address);
         reportPhoto.setImageBitmap(this.getBitmapFromURL(report.photo));
+
+        // need to try this
+        convertView.setClickable(true);
+        convertView.setFocusable(true);
+        //view.setBackgroundResource(android.R.drawable.menuitem_background);
+        convertView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+            }
+
+        });
+        //till here
         // Return the completed view to render on screen
         return convertView;
     }
@@ -66,4 +84,6 @@ public class ReportsAdapter extends ArrayAdapter<Report> {
             return null;
         }
     }
+
+
 }
