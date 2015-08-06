@@ -5,14 +5,13 @@
         android:icon="@drawable/ic_user"
         app:showAsAction="withText|ifRoom"/>
     <item android:id="@+id/action_search"
-        android:icon="@drawable/ic_search"
-        android:title="@string/dogs_for_adopt"
+        android:icon="@drawable/ic_search" android:title=" "
         app:showAsAction="withText|ifRoom"/>
-    <item android:id="@+id/adopt_dogs_list" android:title="@string/dogs_for_adopt"
+    <item android:id="@+id/adopt_dogs_list" android:icon="@mipmap/ic_dogs_house" android:title="@string/dogs_for_adopt"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/report_dog" android:title="@string/report_dog"
-        android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/about_us_page" android:title="@string/title_activity_about_us"
+    <item android:id="@+id/report_dog" android:icon="@mipmap/ic_importent" android:title="@string/report_dog"
+        android:orderInCategory="100" app:showAsAction="withText" />
+    <item android:id="@+id/about_us_page" android:icon="@mipmap/ic_foot_print" android:title="@string/title_activity_about_us"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
 

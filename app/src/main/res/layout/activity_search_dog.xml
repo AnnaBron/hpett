@@ -30,13 +30,6 @@ tools:context="il.co.quix.afeka.hpet.LoginActivity">
             android:measureWithLargestChild="false"
             android:longClickable="false">
 
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/dogNameEdit"
-                android:text=""
-                android:autoText="false" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

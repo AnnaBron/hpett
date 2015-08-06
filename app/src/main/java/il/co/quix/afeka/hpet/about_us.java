@@ -16,7 +16,7 @@ import android.widget.EditText;
 public class about_us extends MainActivity implements View.OnClickListener {
 
     private Button callBtn;
-    private EditText phoneNumber;
+    private String phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,17 +24,16 @@ public class about_us extends MainActivity implements View.OnClickListener {
         setContentView(R.layout.activity_about_us);
 
         callBtn = (Button) findViewById(R.id.callBtn);
-        phoneNumber = (EditText) findViewById(R.id.phoneNum);
         callBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        // TODO phone call
+        phoneNumber="0548116102";
         if (view.getId() == R.id.callBtn) {
             try {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + phoneNumber.getText().toString()));
+                callIntent.setData(Uri.parse("tel:" + phoneNumber));
                 startActivity(callIntent);
             } catch (ActivityNotFoundException activityException) {
                 Log.e("Calling a Phone Number", "Call failed", activityException);

@@ -4,9 +4,11 @@
     <item android:id="@+id/action_login" android:title="@string/action_login"
         android:icon="@drawable/ic_user"
         app:showAsAction="withText|ifRoom"/>
-    <item android:id="@+id/adopt_dogs_list" android:title="@string/dogs_for_adopt"
+    <item android:id="@+id/adopt_dogs_list" android:icon="@mipmap/ic_dogs_house" android:title="@string/dogs_for_adopt"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/report_dog" android:title="@string/report_dog"
+    <item android:id="@+id/report_dog" android:icon="@mipmap/ic_importent" android:title="@string/report_dog"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/about_us_page" android:icon="@mipmap/ic_foot_print" android:title="@string/title_activity_about_us"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/loged_out" android:title="@string/loged_out"
         android:orderInCategory="100" app:showAsAction="never" />

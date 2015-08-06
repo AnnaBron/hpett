@@ -48,8 +48,12 @@ public class DogsAdapter extends ArrayAdapter<Dog> {
         // Return the completed view to render on screen
         return convertView;
     }
+    /*
+    public void OnItemClickListener(){
+        Log.e("ggg"," ");
 
-
+    }
+*/
     public static Bitmap getBitmapFromURL(String src) {
         try {
             Log.e("src",src);
