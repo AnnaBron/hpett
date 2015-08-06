@@ -23,8 +23,9 @@
                 android:layout_height="wrap_content"
                 android:text="dogName"
                 android:layout_gravity="center_vertical|bottom|right"
-                android:textSize="30dp"
-                android:textIsSelectable="true" />
+                android:textSize="24dp"
+                android:textIsSelectable="true"
+                android:layout_marginTop="8dp" />
 
             <TextView
                 android:id="@+id/reportDescription"
@@ -32,7 +33,8 @@
                 android:layout_height="58dp"
                 android:text="dogId"
                 android:layout_gravity="right"
-                android:gravity="right" />
+                android:gravity="right"
+                android:layout_marginTop="8dp" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -50,7 +52,7 @@
         android:paddingEnd="10dp"
         android:cropToPadding="false"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="4dp" />
 
