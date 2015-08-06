@@ -29,7 +29,6 @@ public class ReportedDogs extends MainActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 Intent intent = new Intent(ReportedDogs.this,ReportView.class);
-
                 // i.putExtra(ID_EXTRA,String.valueOf(i));
                 startActivity(intent);
             }
