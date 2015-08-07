@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ public class MainActivity extends ActionBarActivity {
 
     private static final String TAG = "MainActivity";
     public DogsAdapter adapter;
+    public static Dog selectedDog;
     private boolean debug = false;
     private String res = null;
     UserSessionManager session;
@@ -63,18 +65,19 @@ public class MainActivity extends ActionBarActivity {
 
 
         listView.setAdapter(adapter);
-
-        // this is how we know what to do when item list is clicked
-        // listView.setOnItemClickListener(OnListClick);
-//        listView.setOnItemClickListener(new DogsAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(DogsAdapter parent, View view, int position, long id) {
-//                Intent intent = new Intent(MainActivity.this, adopted_dog.class);
-//
-//                // i.putExtra(ID_EXTRA,String.valueOf(i));
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Toast.makeText(MainActivity.this,
+                    "Item in position " + position + " clicked", Toast.LENGTH_LONG).show();
+            Log.d("NI", "NIS");
+            selectedDog = adapter.getItem(position);
+            // Intent intent = new Intent(Volenteer.this,LoginV.class);
+            Intent intent = new Intent(MainActivity.this,Adopt.class);
+            // intent.putExtra("report", );
+            startActivity(intent);
+        }
+    });
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -157,9 +160,6 @@ public class MainActivity extends ActionBarActivity {
             intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         }
-
-
-
 
         return super.onOptionsItemSelected(item);
     }

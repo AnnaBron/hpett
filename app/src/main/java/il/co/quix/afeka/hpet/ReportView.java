@@ -28,33 +28,31 @@ public class ReportView extends MainActivity implements View.OnClickListener {
     private EditText sendersComments;
     private EditText addressTxt;
     private ImageView dogsImage;
+    private Report selected;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          setContentView(R.layout.save_dog);
+         selected = Volenteer.selectedReport;
 
          wazeBtn = (Button) findViewById(R.id.wazeBtn);
          sendersComments = (EditText) findViewById(R.id.sendersComments);
          addressTxt = (EditText) findViewById(R.id.addressTxt);
          dogsImage = (ImageView) findViewById(R.id.dogsImage);
 
-            getData();
-            setData();
+            getData(selected);
 
          wazeBtn.setOnClickListener(this);
 
 
     }
 
-    private void setData() {
-       // addressTxt.setText("last adreess");
-        //   sendersComments.setText(dog.description);
-        // dogsImage.setImageBitmap(this.getBitmapFromURL(dog.photo));
-    }
 
-    private void getData() {
-    // TODO get data from server -> image, adress,comments
-
+    private void getData(Report selected) {
+        addressTxt.setText(selected.address);
+        sendersComments.setText(selected.description);
+        dogsImage.setImageBitmap(getBitmapFromURL(selected.photo));
     }
 
     public static Bitmap getBitmapFromURL(String src) {
@@ -74,20 +72,18 @@ public class ReportView extends MainActivity implements View.OnClickListener {
             return null;
         }
     }
+
     @Override
     public void onClick(View view) {
-
         if (view.getId() == R.id.wazeBtn) {
-            launchWaze();
-
+            launchWaze(selected);
         }
     }
 
-    private void launchWaze() {
-        // not finished
+    private void launchWaze(Report selected) {
         try
         {
-            String lat = " ",lng = " ";
+            String lat =selected.lat,lng = selected.lng;
             String url = String.format("waze://?ll=<%s>,<%s>&navigate=yes",lat,lng);
             Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse(url) );
             startActivity( intent );
