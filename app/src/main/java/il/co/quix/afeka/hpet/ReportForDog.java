@@ -1,67 +1,71 @@
 package il.co.quix.afeka.hpet;
 
-        import android.animation.Animator;
-        import android.animation.AnimatorListenerAdapter;
-        import android.annotation.TargetApi;
-        import android.app.AlertDialog;
-        import android.app.LoaderManager;
-        import android.content.ContentValues;
-        import android.content.Context;
-        import android.content.CursorLoader;
-        import android.content.DialogInterface;
-        import android.content.Intent;
-        import android.content.Loader;
-        import android.database.Cursor;
-        import android.graphics.Bitmap;
-        import android.location.Address;
-        import android.location.Criteria;
-        import android.location.Geocoder;
-        import android.location.Location;
-        import android.location.LocationListener;
-        import android.location.LocationManager;
-        import android.net.Uri;
-        import android.os.AsyncTask;
-        import android.os.Build;
-        import android.provider.ContactsContract;
-        import android.provider.MediaStore;
-        import android.support.v7.app.ActionBarActivity;
-        import android.os.Bundle;
-        import android.util.Base64;
-        import android.util.Log;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.ArrayAdapter;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.ImageButton;
-        import android.widget.ImageView;
-        import android.widget.TextView;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.app.LoaderManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.CursorLoader;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.provider.ContactsContract;
+import android.provider.MediaStore;
+import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-        import org.apache.http.HttpEntity;
-        import org.apache.http.HttpResponse;
-        import org.apache.http.NameValuePair;
-        import org.apache.http.client.ClientProtocolException;
-        import org.apache.http.client.HttpClient;
-        import org.apache.http.client.entity.UrlEncodedFormEntity;
-        import org.apache.http.client.methods.HttpPost;
-        import org.apache.http.impl.client.DefaultHttpClient;
-        import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
-        import java.io.BufferedReader;
-        import java.io.ByteArrayOutputStream;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.io.InputStreamReader;
-        import java.io.UnsupportedEncodingException;
-        import java.util.ArrayList;
-        import java.util.List;
-        import java.util.Locale;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
-        import static android.util.Base64.*;
+import static android.util.Base64.*;
 
 
-public class ReportForDog extends MainActivity implements View.OnClickListener,LocationListener,LoaderManager.LoaderCallbacks<Cursor> {
+public class ReportForDog extends MainActivity implements View.OnClickListener, LocationListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     private Button reportBtn;
     private ImageButton captureBtn;
@@ -92,8 +96,8 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
         captureBtn = (ImageButton) findViewById(R.id.captureBtn);
         commentsEdit = (EditText) findViewById(R.id.commentsEdit);
         previewImage = (ImageView) findViewById(R.id.previewImage);
-        mReportFormView =  (View) findViewById(R.id.reports_form);
-        mProgressView =  (View) findViewById(R.id.report_progress);
+        mReportFormView = (View) findViewById(R.id.reports_form);
+        mProgressView = (View) findViewById(R.id.report_progress);
 
         context = ReportForDog.this;
         alertDialogBuilder = new AlertDialog.Builder(context);
@@ -101,7 +105,7 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-        List<String> providers  = locationManager.getProviders(true);
+        List<String> providers = locationManager.getProviders(true);
 
 
         reportBtn.setOnClickListener(new View.OnClickListener() {
@@ -116,15 +120,15 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
     }
 
     private boolean validateForm() {
-        if ( !locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             alertMessage("אנא הפעל את שרותי ה gps במכשיר כדי לשלוח דיווח");
             return false;
         }
-        if ( imageStr == null) {
+        if (imageStr == null) {
             alertMessage("לא צולמה תמונה של הכלב המדווח");
             return false;
         }
-        if ( address == null) {
+        if (address == null) {
             alertMessage("כתובת הדיווח טרם זוהתה");
             return false;
         }
@@ -146,24 +150,22 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
     }
 
 
-
     private void sendForm() {
         if (addDogTask != null) {
             return;
         }
-        if(!validateForm()){
+        if (!validateForm()) {
             // create alert dialog
 
             return;
         }
 
 
-       showProgress(true);
-       addDogTask = new AddReportTask(imageStr, address ,commentsEdit.getText().toString(),lat,lng);
-       addDogTask.execute((Void) null);
+        showProgress(true);
+        addDogTask = new AddReportTask(imageStr, address, commentsEdit.getText().toString(), lat, lng);
+        addDogTask.execute((Void) null);
 
-        }
-
+    }
 
 
     @Override
@@ -176,8 +178,8 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
 
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
-            byte [] byte_arr = stream.toByteArray();
-            imageStr = Base64.encodeToString(byte_arr,Base64.DEFAULT);
+            byte[] byte_arr = stream.toByteArray();
+            imageStr = Base64.encodeToString(byte_arr, Base64.DEFAULT);
 
         }
     }
@@ -201,24 +203,6 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
         }
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();  // Always call the superclass method first
-
-        // Save the note's current draft, because the activity is stopping
-        // and we want to be sure the current note progress isn't lost.
-        ContentValues values = new ContentValues();
-        //values.put(NotePad.Notes.COLUMN_NAME_NOTE, commentsEdit.getText());
-        //values.put(NotePad.Notes.COLUMN_NAME_TITLE,);
-
-    /*getContentResolver().update(
-            mUri,    // The URI for the note to update.
-            values,  // The map of column names and new values to apply to them.
-            null,    // No SELECT criteria are used.
-            null     // No WHERE columns are used.
-    );
-    */
-    }
 
     @Override
     public void onDestroy() {
@@ -230,7 +214,7 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
 
     @Override
     public void onLocationChanged(Location location) {
-       //  txtLat = (TextView) findViewById(R.id.textview1);
+        //  txtLat = (TextView) findViewById(R.id.textview1);
         this.lat = location.getLatitude();
         this.lng = location.getLongitude();
         this.address = getAddress();
@@ -245,25 +229,25 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
 
     @Override
     public void onProviderEnabled(String provider) {
-        Log.d("Latitude","enable");
+        Log.d("Latitude", "enable");
     }
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
-        Log.d("Latitude","status");
+        Log.d("Latitude", "status");
     }
 
-    private String getAddress(){
+    private String getAddress() {
         String provider = locationManager.getBestProvider(new Criteria(), true);
         Location locations = locationManager.getLastKnownLocation(provider);
-        List<String>  providerList = locationManager.getAllProviders();
-        if(null!=locations && null!=providerList && providerList.size()>0){
+        List<String> providerList = locationManager.getAllProviders();
+        if (null != locations && null != providerList && providerList.size() > 0) {
             double longitude = locations.getLongitude();
             double latitude = locations.getLatitude();
             Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
             try {
                 List<Address> listAddresses = geocoder.getFromLocation(latitude, longitude, 1);
-                if(null!=listAddresses&&listAddresses.size()>0){
+                if (null != listAddresses && listAddresses.size() > 0) {
                     return listAddresses.get(0).getAddressLine(0) + "," + listAddresses.get(0).getAddressLine(1);
                 }
             } catch (IOException e) {
@@ -352,8 +336,6 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
     }
 
 
-
-
     public class AddReportTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String image;
@@ -362,7 +344,7 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
         private final String lat;
         private final String lng;
 
-        AddReportTask(String image, String address, String notes,Double lat, Double lng) {
+        AddReportTask(String image, String address, String notes, Double lat, Double lng) {
             this.image = image;
             this.address = address;
             this.notes = notes;
@@ -373,25 +355,25 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            String s="";
+            String s = "";
             try {
 
-                HttpClient httpClient=new DefaultHttpClient();
+                HttpClient httpClient = new DefaultHttpClient();
 
-                HttpPost httpPost=new HttpPost("http://hpet.quix.co.il/api/addreport");
+                HttpPost httpPost = new HttpPost("http://hpet.quix.co.il/api/addreport");
 
-                List<NameValuePair> list=new ArrayList<NameValuePair>();
+                List<NameValuePair> list = new ArrayList<NameValuePair>();
                 list.add(new BasicNameValuePair("description", notes));
-                list.add(new BasicNameValuePair("lat",lat));
-                list.add(new BasicNameValuePair("lng",lng));
-                list.add(new BasicNameValuePair("photo_stream",image));
-                list.add(new BasicNameValuePair("address",address));
-                UrlEncodedFormEntity form = new UrlEncodedFormEntity(list,"UTF-8");
+                list.add(new BasicNameValuePair("lat", lat));
+                list.add(new BasicNameValuePair("lng", lng));
+                list.add(new BasicNameValuePair("photo_stream", image));
+                list.add(new BasicNameValuePair("address", address));
+                UrlEncodedFormEntity form = new UrlEncodedFormEntity(list, "UTF-8");
                 httpPost.setEntity(form);
-                HttpResponse httpResponse=  httpClient.execute(httpPost);
+                HttpResponse httpResponse = httpClient.execute(httpPost);
 
-                HttpEntity httpEntity=httpResponse.getEntity();
-                Log.d("DOG",readResponse(httpResponse));
+                HttpEntity httpEntity = httpResponse.getEntity();
+                Log.d("DOG", readResponse(httpResponse));
                 //  ReportForDog.this.setLoginStatus(Integer.parseInt(readResponse(httpResponse)) > 0 ? true : false);
 
                 Thread.sleep(2000);
@@ -417,6 +399,7 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
             // TODO: register the new account here.
         }
 
+        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
         @Override
         protected void onPostExecute(final Boolean success) {
             addDogTask = null;
@@ -428,6 +411,27 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
             // Add new Flag to start new Activity
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
+
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(ReportForDog.this).setSmallIcon(R.mipmap.ic_importent).setContentTitle("דיווח!").setContentText("נמצא כלב משוטט ,צא אליו!");
+            // Creates an explicit intent for an Activity in your app
+            Intent resultIntent = new Intent(ReportForDog.this, Volenteer.class);
+
+                // The stack builder object will contain an artificial back stack for the
+                // started Activity.
+                // This ensures that navigating backward from the Activity leads out of
+                // your application to the Home screen.
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(ReportForDog.this);
+                // Adds the back stack for the Intent (but not the Intent itself)
+                            stackBuilder.addParentStack(Volenteer.class);
+                // Adds the Intent that starts the Activity to the top of the stack
+                            stackBuilder.addNextIntent(resultIntent);
+                            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                            mBuilder.setContentIntent(resultPendingIntent);
+                            NotificationManager mNotificationManager =
+                                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                     // mId allows you to update the notification later on.
+                            int mId=0;
+                             mNotificationManager.notify(mId, mBuilder.build());
             finish();
         }
 
@@ -438,20 +442,18 @@ public class ReportForDog extends MainActivity implements View.OnClickListener,L
         }
 
         public String readResponse(HttpResponse res) {
-            InputStream is=null;
-            String return_text="";
+            InputStream is = null;
+            String return_text = "";
             try {
-                is=res.getEntity().getContent();
-                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(is));
-                String line="";
-                StringBuffer sb=new StringBuffer();
-                while ((line=bufferedReader.readLine())!=null)
-                {
+                is = res.getEntity().getContent();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
+                String line = "";
+                StringBuffer sb = new StringBuffer();
+                while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
-                return_text=sb.toString();
-            } catch (Exception e)
-            {
+                return_text = sb.toString();
+            } catch (Exception e) {
 
             }
             return return_text;
