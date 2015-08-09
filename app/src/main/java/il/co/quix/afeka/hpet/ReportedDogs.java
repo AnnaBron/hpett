@@ -10,16 +10,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 
 public class ReportedDogs extends MainActivity {
-
+    public static Report selected;
+    public static String test;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reported_dogs);
         String[] mylist = {"case1","case2"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, mylist);
+        final ArrayList<String> list = new ArrayList<>();
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, list);
         ListView listView = (ListView) findViewById(R.id.reported_dogs_list);
         listView.setAdapter(adapter);
 
@@ -27,24 +31,16 @@ public class ReportedDogs extends MainActivity {
        // listView.setOnItemClickListener(OnListClick);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-                Intent intent = new Intent(ReportedDogs.this,ReportView.class);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ReportedDogs.this, ReportView.class);
+
+                test = list.get(position);
+
                 // i.putExtra(ID_EXTRA,String.valueOf(i));
                 startActivity(intent);
             }
         });
     }
-/*
-    private AdapterView.onItemClickListener OnListClick = new AdapterView.onItemClickListener (){
-        public void onItemClick(AdapterView<?> parent , View view , int position , long id)
-        {
-            Intent intent = new Intent(ReportedDogs.this,save_dog.class);
 
-           // i.putExtra(ID_EXTRA,String.valueOf(i));
-            startActivity(intent);
-
-        }
-    };
-    */
     
 }

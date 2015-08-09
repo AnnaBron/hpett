@@ -23,6 +23,7 @@ public class Volenteer extends MainActivity {
 
 
     public ReportsAdapter vadapter;
+    public static Report selectedReport;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +38,8 @@ public class Volenteer extends MainActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(Volenteer.this,
                         "Item in position " + position + " clicked", Toast.LENGTH_LONG).show();
-                Log.d("NI","NIS");
-                Report reportItem = vadapter.getItem(position);
+                Log.d("NI", "NIS");
+                selectedReport = vadapter.getItem(position);
                 // Intent intent = new Intent(Volenteer.this,LoginV.class);
                 Intent intent = new Intent(Volenteer.this,ReportView.class);
                 // intent.putExtra("report", );
