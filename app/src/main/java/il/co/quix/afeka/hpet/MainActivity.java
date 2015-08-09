@@ -38,11 +38,11 @@ public class MainActivity extends ActionBarActivity {
 
     private static final String TAG = "MainActivity";
     public DogsAdapter adapter;
-    public static Dog selectedDog;
     private boolean debug = false;
     private String res = null;
     UserSessionManager session;
     private Toolbar toolbar;
+    public static Dog selectedDog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

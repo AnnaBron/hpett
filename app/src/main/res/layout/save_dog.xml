@@ -39,7 +39,8 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="נראה לאחרונה ב.."
                 android:id="@+id/textView"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:editable="false"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -49,7 +50,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_weight="0.50"
                 android:layout_gravity="center_horizontal"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:editable="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,7 +59,8 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="הערות המדווח"
                 android:id="@+id/textView4"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:editable="false"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -65,7 +68,8 @@
                 android:id="@+id/sendersComments"
                 android:layout_above="@+id/button"
                 android:layout_centerHorizontal="true"
-                android:layout_weight="0.50" />
+                android:layout_weight="0.50"
+                android:editable="false"/>
 
             <Button
                 android:layout_width="match_parent"
