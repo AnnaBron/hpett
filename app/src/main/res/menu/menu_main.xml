@@ -7,7 +7,7 @@
     <item android:id="@+id/action_search"
         android:icon="@drawable/ic_search" android:title=" "
         app:showAsAction="withText|ifRoom"/>
-    <item android:id="@+id/adopt_dogs_list" android:icon="@drawable/ic_dogs_house" android:title="@string/dogs_for_adopt"
+    <item android:id="@+id/adopt_dogs_list" android:icon="@mipmap/ic_dogs_house" android:title="@string/dogs_for_adopt"
         android:orderInCategory="100" app:showAsAction="collapseActionView" />
     <item android:id="@+id/report_dog" android:icon="@mipmap/ic_importent" android:title="@string/report_dog"
         android:orderInCategory="100" app:showAsAction="collapseActionView" />
