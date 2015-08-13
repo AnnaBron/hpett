@@ -44,6 +44,7 @@ public class Volenteer extends MainActivity {
                 Intent intent = new Intent(Volenteer.this,ReportView.class);
                 // intent.putExtra("report", );
                 startActivity(intent);
+
             }
         });
         new HttpAsyncTask().execute("http://hpet.quix.co.il/api/reports");
@@ -51,6 +52,7 @@ public class Volenteer extends MainActivity {
     public void updateAdapterReports(ArrayList<Report> reports){
         vadapter.clear();
         vadapter.addAll(reports);
+        vadapter.notifyDataSetChanged();
     }
 
 
