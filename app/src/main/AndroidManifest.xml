@@ -74,7 +74,7 @@
         </activity>
         <activity
             android:name=".Adopt"
-            android:label="@string/title_activity_adopt_dog" >
+            android:label="@string/title_activity_adopt" >
         </activity>
     </application>
 

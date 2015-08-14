@@ -68,9 +68,6 @@ public class MainActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Toast.makeText(MainActivity.this,
-                    "Item in position " + position + " clicked", Toast.LENGTH_LONG).show();
-            Log.d("NI", "NIS");
             selectedDog = adapter.getItem(position);
             // Intent intent = new Intent(Volenteer.this,LoginV.class);
             Intent intent = new Intent(MainActivity.this,Adopt.class);

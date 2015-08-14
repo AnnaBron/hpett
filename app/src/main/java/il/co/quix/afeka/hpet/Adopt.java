@@ -4,8 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,25 +20,28 @@ public class Adopt extends MainActivity {
     private TextView ageTxt;
     private TextView dogsInfoTxt;
     private TextView genderTxt;
+    private TextView dogsNameTxt;
     private TextView typeTxt;
     private ImageView dogsImage;
     private Dog selected;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.save_dog);
+        setContentView(R.layout.adopt);
         selected = MainActivity.selectedDog;
 
-        dogsInfoTxt = (TextView) findViewById(R.id.dogsInfoTxt);
-        ageTxt = (TextView) findViewById(R.id.ageTxt);
-        genderTxt = (TextView) findViewById(R.id.genderTxt);
-        typeTxt = (TextView) findViewById(R.id.typeTxt);
+        dogsNameTxt = (TextView) findViewById(R.id.nameText);
+        dogsInfoTxt = (TextView) findViewById(R.id.infoText);
+        ageTxt = (TextView) findViewById(R.id.ageText);
+        genderTxt = (TextView) findViewById(R.id.genderText);
+        typeTxt = (TextView) findViewById(R.id.typeText);
         dogsImage = (ImageView) findViewById(R.id.dogsImage);
 
        getData(selected);
 
     }
     private void getData(Dog selected) {
+        dogsInfoTxt.setText(selected.name);
         dogsInfoTxt.setText(selected.description);
         ageTxt.setText(selected.age);
         genderTxt.setText(selected.gender);

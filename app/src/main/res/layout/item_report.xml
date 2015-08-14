@@ -4,8 +4,8 @@
     android:longClickable="false"
     android:textAlignment="inherit"
     android:weightSum="1"
-    android:descendantFocusability="blocksDescendants"
     android:touchscreenBlocksFocus="false"
+    android:descendantFocusability="blocksDescendants"
     android:gravity="right">
 
     <RelativeLayout

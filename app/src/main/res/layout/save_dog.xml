@@ -22,16 +22,17 @@
             android:weightSum="1" >
 
             <ImageView
-                android:layout_width="200dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/dogsImage"
                 android:layout_gravity="center_horizontal"
-                android:backgroundTint="@color/bright_foreground_material_dark"
                 android:layout_marginTop="20dp"
-                android:background="@android:drawable/ic_menu_gallery"
                 android:minHeight="200dp"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:scaleType="centerInside"
+                android:layout_marginBottom="40dp"
+                android:minWidth="240dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -40,18 +41,20 @@
                 android:text="נראה לאחרונה ב.."
                 android:id="@+id/textView"
                 android:layout_gravity="right"
-                android:editable="false"/>
+                android:editable="false"
+                android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/addressTxt"
-                android:layout_above="@+id/button"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="0.50"
-                android:layout_gravity="center_horizontal"
-                android:singleLine="true"
-                android:editable="false"/>
+                android:layout_height="40dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/lastAddress"
+                android:layout_gravity="right"
+                android:editable="false"
+                android:layout_marginTop="20dp"
+                android:textColor="#ff1d1cff"
+                android:textSize="18dp"
+                android:textIsSelectable="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,20 +63,22 @@
                 android:text="הערות המדווח"
                 android:id="@+id/textView4"
                 android:layout_gravity="right"
-                android:editable="false"/>
+                android:editable="false"
+                android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/sendersComments"
-                android:layout_above="@+id/button"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="0.50"
-                android:editable="false"/>
+                android:layout_gravity="right"
+                android:editable="false"
+                android:layout_marginTop="20dp"
+                android:textColor="#ff1d1cff" />
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:text="נווט לכלב"
                 android:id="@+id/wazeBtn"
                 android:layout_weight="0.06"
@@ -81,6 +86,16 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:visibility="visible"
+
+                android:textColor="#000000"
+                android:textSize="30sp"
+
+
+                android:background="@drawable/buttonshape"
+                android:shadowColor="#A8A8A8"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>
 

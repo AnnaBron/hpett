@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,8 +26,8 @@ import java.net.URL;
 public class ReportView extends MainActivity implements View.OnClickListener {
 
     private Button wazeBtn;
-    private EditText sendersComments;
-    private EditText addressTxt;
+    private TextView sendersComments;
+    private TextView addressTxt;
     private ImageView dogsImage;
     private Report selected;
 
@@ -37,8 +38,8 @@ public class ReportView extends MainActivity implements View.OnClickListener {
          selected = Volenteer.selectedReport;
 
          wazeBtn = (Button) findViewById(R.id.wazeBtn);
-         sendersComments = (EditText) findViewById(R.id.sendersComments);
-         addressTxt = (EditText) findViewById(R.id.addressTxt);
+         sendersComments = (TextView) findViewById(R.id.sendersComments);
+         addressTxt = (TextView) findViewById(R.id.lastAddress);
          dogsImage = (ImageView) findViewById(R.id.dogsImage);
 
             getData(selected);

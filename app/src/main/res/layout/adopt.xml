@@ -6,70 +6,201 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/dogsImage"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/bright_foreground_material_dark"
-            android:background="@android:drawable/ic_menu_gallery"
-            android:minHeight="200dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="פרטי הכלב :"
-            android:id="@+id/textView3"
-            android:layout_below="@+id/dogsImage"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="41dp"
-            android:layout_marginEnd="41dp" />
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/dogsImage"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/bright_foreground_material_dark"
+                android:background="@android:drawable/ic_menu_gallery"
+                android:minHeight="200dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="15dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/dogsInfoTxt"
-            android:layout_below="@+id/textView3"
-            android:layout_alignRight="@+id/textView3"
-            android:layout_alignEnd="@+id/textView3"
-            android:layout_marginTop="43dp"
-            android:hint="מידע" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ageTxt"
-            android:layout_below="@+id/dogsInfoTxt"
-            android:layout_alignRight="@+id/dogsInfoTxt"
-            android:layout_alignEnd="@+id/dogsInfoTxt"
-            android:layout_marginTop="47dp"
-            android:hint="גיל" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/nameText"
+                    android:layout_below="@+id/dogsInfoTxt"
+                    android:layout_alignRight="@+id/infoText"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:textSize="22dp"
+                    android:textStyle="italic" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/genderTxt"
-            android:layout_below="@+id/ageTxt"
-            android:layout_alignRight="@+id/ageTxt"
-            android:layout_alignEnd="@+id/ageTxt"
-            android:layout_marginTop="41dp"
-            android:hint="מין"
-            android:singleLine="false"
-            android:phoneNumber="false"
-            android:password="false" />
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/nameLabel"
+                    android:layout_below="@+id/dogsInfoTxt"
+                    android:hint="שם:"
+                    android:layout_alignRight="@+id/infoText"
+                    android:layout_gravity="right"
+                    android:gravity="start|right"
+                    android:textSize="22dp"
+                    android:textIsSelectable="true"
+                    android:textStyle="bold"
+                    android:layout_marginRight="20dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/typeTxt"
-            android:layout_below="@+id/genderTxt"
-            android:layout_alignRight="@+id/genderTxt"
-            android:layout_alignEnd="@+id/genderTxt"
-            android:hint="סוג" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/ageText"
+                    android:layout_below="@+id/dogsInfoTxt"
+                    android:layout_alignRight="@+id/infoText"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/ageLabel"
+                    android:layout_below="@+id/dogsInfoTxt"
+                    android:hint="גיל:"
+                    android:layout_alignRight="@+id/infoText"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:textSize="22dp"
+                    android:textIsSelectable="true"
+                    android:textStyle="bold"
+                    android:layout_marginRight="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/genderText"
+                    android:layout_below="@+id/dogsInfoTxt"
+                    android:layout_alignRight="@+id/infoText"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/genderLabel"
+                    android:layout_below="@+id/dogsInfoTxt"
+                    android:hint="מין:"
+                    android:layout_alignRight="@+id/infoText"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:textSize="22dp"
+                    android:textIsSelectable="true"
+                    android:textStyle="bold"
+                    android:layout_marginRight="20dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/typeText"
+                    android:layout_below="@+id/dogsInfoTxt"
+                    android:layout_alignRight="@+id/infoText"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/typeLabel"
+                    android:layout_below="@+id/dogsInfoTxt"
+                    android:hint="סוג:"
+                    android:layout_alignRight="@+id/infoText"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:textSize="22dp"
+                    android:textIsSelectable="true"
+                    android:textStyle="bold"
+                    android:layout_marginRight="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/infoLabel"
+                    android:layout_below="@+id/dogsInfoTxt"
+                    android:hint="מידע נוסף:"
+                    android:layout_alignRight="@+id/infoText"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:textSize="22dp"
+                    android:textIsSelectable="true"
+                    android:textStyle="bold"
+                    android:layout_marginRight="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/infoText"
+                    android:layout_below="@+id/dogsInfoTxt"
+                    android:layout_alignRight="@+id/lastAddress"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:textSize="22dp"
+                    android:textIsSelectable="false"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
     </RelativeLayout>
 

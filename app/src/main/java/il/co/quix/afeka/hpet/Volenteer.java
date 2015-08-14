@@ -33,24 +33,21 @@ public class Volenteer extends MainActivity {
         ListView listView = (ListView) findViewById(R.id.report_dogs_list);
         listView.setAdapter(vadapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(Volenteer.this,
-                        "Item in position " + position + " clicked", Toast.LENGTH_LONG).show();
-                Log.d("NI", "NIS");
-                selectedReport = vadapter.getItem(position);
-                // Intent intent = new Intent(Volenteer.this,LoginV.class);
-                Intent intent = new Intent(Volenteer.this,ReportView.class);
-                // intent.putExtra("report", );
-                startActivity(intent);
-            }
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    selectedReport = vadapter.getItem(position);
+                    // Intent intent = new Intent(Volenteer.this,LoginV.class);
+                    Intent intent = new Intent(Volenteer.this,ReportView.class);
+                    // intent.putExtra("report", );
+                    startActivity(intent);
+                }
         });
         new HttpAsyncTask().execute("http://hpet.quix.co.il/api/reports");
     }
     public void updateAdapterReports(ArrayList<Report> reports){
         vadapter.clear();
         vadapter.addAll(reports);
+        vadapter.notifyDataSetChanged();
     }
 
 
@@ -63,7 +60,7 @@ public class Volenteer extends MainActivity {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
+            // Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
             JSONArray jsonArray = null;
             try {
                 jsonArray = new JSONArray(result);

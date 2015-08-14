@@ -49,18 +49,6 @@ public class ReportsAdapter extends ArrayAdapter<Report> {
         reportDescription.setText(report.address);
         reportPhoto.setImageBitmap(this.getBitmapFromURL(report.photo));
 
-        // need to try this
-        convertView.setClickable(true);
-        convertView.setFocusable(true);
-        //view.setBackgroundResource(android.R.drawable.menuitem_background);
-        convertView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-            }
-
-        });
         //till here
         // Return the completed view to render on screen
         return convertView;
