@@ -15,7 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by ард on 07/08/2015.
+ * Created by пїЅпїЅпїЅ on 07/08/2015.
  */
 public class Adopt extends MainActivity {
 
@@ -37,7 +37,7 @@ public class Adopt extends MainActivity {
         typeTxt = (TextView) findViewById(R.id.typeTxt);
         dogsImage = (ImageView) findViewById(R.id.dogsImage);
 
-        getData(selected);
+       getData(selected);
 
     }
     private void getData(Dog selected) {

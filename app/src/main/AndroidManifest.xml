@@ -72,6 +72,10 @@
             android:name=".SearchDog"
             android:label="@string/title_activity_search_dog" >
         </activity>
+        <activity
+            android:name=".Adopt"
+            android:label="@string/title_activity_adopt_dog" >
+        </activity>
     </application>
 
 </manifest>

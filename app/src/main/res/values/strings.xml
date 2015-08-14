@@ -20,6 +20,7 @@
     <string name="title_activity_volenteer">מתנדב</string>
     <string name="loged_out">התנתק</string>
     <string name="title_activity_search_dog">חיפוש כלב</string>
+    <string name="title_activity_adopt_dog">אימוץ</string>
     <string-array name="dogs_type">
         <item>בחר סוג</item>
         <item>פודל</item>
