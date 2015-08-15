@@ -77,14 +77,15 @@ public class ReportView extends MainActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.wazeBtn) {
-            launchWaze(selected);
+            String lat =selected.lat,lng = selected.lng;
+            launchWaze(lat,lng);
         }
     }
 
-    private void launchWaze(Report selected) {
+    private void launchWaze(String lat,String lng) {
         try
         {
-            String lat =selected.lat,lng = selected.lng;
+            //String lat =selected.lat,lng = selected.lng;
             String url = String.format("waze://?ll=<%s>,<%s>&navigate=yes",lat,lng);
             Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse(url) );
             startActivity( intent );

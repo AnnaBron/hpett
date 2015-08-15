@@ -2,16 +2,11 @@ package il.co.quix.afeka.hpet;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +37,7 @@ public class Volenteer extends MainActivity {
                     startActivity(intent);
                 }
         });
+
         new HttpAsyncTask().execute("http://hpet.quix.co.il/api/reports");
     }
     public void updateAdapterReports(ArrayList<Report> reports){
