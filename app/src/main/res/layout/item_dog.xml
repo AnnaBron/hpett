@@ -40,10 +40,11 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+    <il.co.quix.afeka.hpet.RoundImageView
+        android:layout_width="60dp"
+        android:layout_height="70dp"
         android:id="@+id/dogPhoto"
+        android:layout_gravity="center_vertical"
         android:padding="10dp"
         android:paddingStart="10dp"
         android:paddingLeft="10dp"

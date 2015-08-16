@@ -42,7 +42,7 @@ public class ReportsAdapter extends ArrayAdapter<Report> {
         // Lookup view for data population
         TextView reportTitle = (TextView) convertView.findViewById(R.id.reportTitle);
         TextView reportDescription = (TextView) convertView.findViewById(R.id.reportDescription);
-        ImageView reportPhoto = (ImageView) convertView.findViewById(R.id.reportPhoto);
+        RoundImageView reportPhoto = (RoundImageView) convertView.findViewById(R.id.reportPhoto);
         // Populate the data into the template view using the data object
         // update view
         reportTitle.setText(report.description);

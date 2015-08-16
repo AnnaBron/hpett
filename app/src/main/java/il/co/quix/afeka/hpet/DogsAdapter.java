@@ -39,7 +39,7 @@ public class DogsAdapter extends ArrayAdapter<Dog> {
         // Lookup view for data population
         TextView dogName = (TextView) convertView.findViewById(R.id.dogName);
         TextView dogDescription = (TextView) convertView.findViewById(R.id.dogDescription);
-        ImageView photo = (ImageView) convertView.findViewById(R.id.dogPhoto);
+        RoundImageView photo = (RoundImageView) convertView.findViewById(R.id.dogPhoto);
         // Populate the data into the template view using the data object
         // update view
         dogName.setText(dog.name);
