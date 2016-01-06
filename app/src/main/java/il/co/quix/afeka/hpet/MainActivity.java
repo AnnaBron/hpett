@@ -96,10 +96,11 @@ public class MainActivity extends ActionBarActivity {
 
             }
         } else {
-            new HttpAsyncTask().execute("http://hpet.quix.co.il/api/dogs");
+            new HttpAsyncTask().execute("http://146.148.123.153/api/dogs"); //http://omriglam.netau.net/hpet/api/dogs
+           // Log.e("Pos", "klum");
         }
 
-
+//146.148.123.153
 
     }
 
@@ -220,11 +221,12 @@ public class MainActivity extends ActionBarActivity {
         protected void onPostExecute(String result) {
             // Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
            //  etResponse.setText(result);
+
             JSONArray jsonArray = null;
             try {
                 jsonArray = new JSONArray(result);
                 ArrayList<Dog> newDogs = Dog.fromJson(jsonArray);
-                // Log.d("NISO",result);
+                 Log.e("NISO",result);
                 MainActivity.this.updateAdapterDogs(newDogs);
 
             } catch (JSONException e) {

@@ -198,7 +198,7 @@ public class SearchDog extends MainActivity implements LoaderManager.LoaderCallb
             try {
                 HttpClient httpClient=new DefaultHttpClient();
 
-                HttpPost httpPost=new HttpPost("http://hpet.quix.co.il/api/search");
+                HttpPost httpPost=new HttpPost("http://146.148.123.153/api/search");
 
                 List<NameValuePair> list=new ArrayList<NameValuePair>();
                 list.add(new BasicNameValuePair("name", dogNameSearch));

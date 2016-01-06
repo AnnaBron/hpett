@@ -360,7 +360,7 @@ public class ReportForDog extends MainActivity implements View.OnClickListener, 
 
                 HttpClient httpClient = new DefaultHttpClient();
 
-                HttpPost httpPost = new HttpPost("http://hpet.quix.co.il/api/addreport");
+                HttpPost httpPost = new HttpPost("http://146.148.123.153/api/addreport");
 
                 List<NameValuePair> list = new ArrayList<NameValuePair>();
                 list.add(new BasicNameValuePair("description", notes));

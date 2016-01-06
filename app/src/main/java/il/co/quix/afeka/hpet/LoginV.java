@@ -312,8 +312,8 @@ public class LoginV extends MainActivity implements LoaderManager.LoaderCallback
             try {
                     HttpClient httpClient=new DefaultHttpClient();
 
-                    HttpPost httpPost=new HttpPost("http://hpet.quix.co.il/api/login");
-
+                    HttpPost httpPost=new HttpPost("http://146.148.123.153/api/login"); // or http://omriglam.netau.net/api/login change every single link!! //ftp://ftp.byethost10.com/htdocs/hpet/api/login
+                    Log.e("Post: " ,httpPost.toString());
                     List<NameValuePair> list=new ArrayList<NameValuePair>();
                     list.add(new BasicNameValuePair("user", mEmail));
                     list.add(new BasicNameValuePair("pass",mPassword));
@@ -331,13 +331,7 @@ public class LoginV extends MainActivity implements LoaderManager.LoaderCallback
             }
             return true;
 
-/*            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }*/
+
 
             // TODO: register the new account here.
         }

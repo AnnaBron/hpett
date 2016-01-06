@@ -38,7 +38,7 @@ public class Volenteer extends MainActivity {
                 }
         });
 
-        new HttpAsyncTask().execute("http://hpet.quix.co.il/api/reports");
+        new HttpAsyncTask().execute("http://146.148.123.153/api/reports");
     }
     public void updateAdapterReports(ArrayList<Report> reports){
         vadapter.clear();
