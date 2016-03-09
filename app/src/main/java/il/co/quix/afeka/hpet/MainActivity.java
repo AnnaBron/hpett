@@ -44,11 +44,16 @@ public class MainActivity extends ActionBarActivity {
     private Toolbar toolbar;
     public static Dog selectedDog;
 
+//    MyGoogleAnalytics mga;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        mga = new MyGoogleAnalytics(this, "Main Screen");
+//        mga.sendEvent("AAAA", "BBBB", "BBBB");
         session = new UserSessionManager(getApplicationContext());
         // this is fix the exeption for network calls
         if (android.os.Build.VERSION.SDK_INT > 9) {
