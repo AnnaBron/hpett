@@ -14,4 +14,4 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/loged_out" android:title="@string/loged_out"
         android:orderInCategory="100" app:showAsAction="never" />
-</menu>
+  </menu>
