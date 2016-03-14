@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
     private Toolbar toolbar;
     public static Dog selectedDog;
 
-//    MyGoogleAnalytics mga;
+    MyGoogleAnalytics mga;
 
 
     @Override
@@ -52,8 +52,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        mga = new MyGoogleAnalytics(this, "Main Screen");
-//        mga.sendEvent("AAAA", "BBBB", "BBBB");
+            mga = new MyGoogleAnalytics(this, "Report Screen");
+            mga.sendEvent("visitors", "reports", "send");
         session = new UserSessionManager(getApplicationContext());
         // this is fix the exeption for network calls
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -71,15 +71,15 @@ public class MainActivity extends ActionBarActivity {
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectedDog = adapter.getItem(position);
-            // Intent intent = new Intent(Volenteer.this,LoginV.class);
-            Intent intent = new Intent(MainActivity.this,Adopt.class);
-            // intent.putExtra("report", );
-            startActivity(intent);
-        }
-    });
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedDog = adapter.getItem(position);
+                // Intent intent = new Intent(Volenteer.this,LoginV.class);
+                Intent intent = new Intent(MainActivity.this,Adopt.class);
+                // intent.putExtra("report", );
+                startActivity(intent);
+            }
+        });
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -102,7 +102,7 @@ public class MainActivity extends ActionBarActivity {
             }
         } else {
             new HttpAsyncTask().execute("http://146.148.123.153/api/dogs"); //http://omriglam.netau.net/hpet/api/dogs
-           // Log.e("Pos", "klum");
+            // Log.e("Pos", "klum");
         }
 
 //146.148.123.153
@@ -143,24 +143,24 @@ public class MainActivity extends ActionBarActivity {
                 intent = new Intent(this,Volenteer.class);
             }
             startActivity(intent);
-        } else if(id == R.id.adopt_dogs_list){
-            intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-        } else if(id == R.id.reported_dogs_list){
-            intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-        } else if(id == R.id.action_search){
-            intent = new Intent(this,SearchDog.class);
-            startActivity(intent);
-        } else if(id == R.id.report_dog){
-            intent = new Intent(this,ReportForDog.class);
-            startActivity(intent);
+            // } else if(id == R.id.adopt_dogs_list){
+            //   intent = new Intent(this,MainActivity.class);
+            // startActivity(intent);
+            //} else if(id == R.id.reported_dogs_list){
+            //  intent = new Intent(this,MainActivity.class);
+            // startActivity(intent);
+            //} else if(id == R.id.action_search){
+            // intent = new Intent(this,SearchDog.class);
+            //startActivity(intent);
+            //} else if(id == R.id.report_dog){
+            //    intent = new Intent(this,ReportForDog.class);
+            //    startActivity(intent);
         } else if(id == R.id.about_us_page){
             intent = new Intent(this,about_us.class);
             startActivity(intent);
         } else if(id == R.id.loged_out){
             session.logoutUser();
-            intent = new Intent(this,MainActivity.class);
+            intent = new Intent(this,ReportForDog.class);
             startActivity(intent);
         }
 
@@ -225,13 +225,13 @@ public class MainActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(String result) {
             // Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
-           //  etResponse.setText(result);
+            //  etResponse.setText(result);
 
             JSONArray jsonArray = null;
             try {
                 jsonArray = new JSONArray(result);
                 ArrayList<Dog> newDogs = Dog.fromJson(jsonArray);
-                 Log.e("NISO",result);
+                Log.e("NISO",result);
                 MainActivity.this.updateAdapterDogs(newDogs);
 
             } catch (JSONException e) {

@@ -29,7 +29,7 @@ public class about_us extends MainActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        phoneNumber="0548116102";
+        phoneNumber="106";
         if (view.getId() == R.id.callBtn) {
             try {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);

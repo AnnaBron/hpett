@@ -65,7 +65,7 @@ import java.util.Locale;
 import static android.util.Base64.*;
 
 
-public class ReportForDog extends MainActivity implements View.OnClickListener, LocationListener, LoaderManager.LoaderCallbacks<Cursor> {
+public class ReportForDog extends ActionBarActivity implements View.OnClickListener, LocationListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     private Button reportBtn;
     private ImageButton captureBtn;
@@ -73,6 +73,7 @@ public class ReportForDog extends MainActivity implements View.OnClickListener, 
     private ImageView previewImage;
     private String imageStr = null;
     protected LocationManager locationManager;
+    UserSessionManager session;
     protected LocationListener locationListener;
     protected Context context;
     private AddReportTask addDogTask = null;
@@ -103,6 +104,7 @@ public class ReportForDog extends MainActivity implements View.OnClickListener, 
         alertDialogBuilder = new AlertDialog.Builder(context);
         captureBtn.setOnClickListener(this);
 
+        session = new UserSessionManager(getApplicationContext());
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
         List<String> providers = locationManager.getProviders(true);
@@ -117,6 +119,59 @@ public class ReportForDog extends MainActivity implements View.OnClickListener, 
 
         // Log.d("Latitude", "disable");
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        Intent intent;
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_login) {
+            if(!session.isUserLoggedIn()){
+                intent = new Intent(this, LoginV.class);
+            } else {
+                intent = new Intent(this,Volenteer.class);
+            }
+            startActivity(intent);
+            // } else if(id == R.id.adopt_dogs_list){
+            //   intent = new Intent(this,MainActivity.class);
+            // startActivity(intent);
+            //} else if(id == R.id.reported_dogs_list){
+            //  intent = new Intent(this,MainActivity.class);
+            // startActivity(intent);
+            //} else if(id == R.id.action_search){
+            // intent = new Intent(this,SearchDog.class);
+            //startActivity(intent);
+            //} else if(id == R.id.report_dog){
+            //    intent = new Intent(this,ReportForDog.class);
+            //    startActivity(intent);
+        } else if(id == R.id.about_us_page){
+            intent = new Intent(this,about_us.class);
+            startActivity(intent);
+        } else if(id == R.id.loged_out){
+            session.logoutUser();
+            intent = new Intent(this,ReportForDog.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // this.toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
+        // setSupportActionBar(toolbar);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        if(!session.isUserLoggedIn()){
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+        } else {
+            getMenuInflater().inflate(R.menu.menu_volenteer, menu);
+        }
+        return true;
     }
 
     private boolean validateForm() {
@@ -371,8 +426,8 @@ public class ReportForDog extends MainActivity implements View.OnClickListener, 
                 UrlEncodedFormEntity form = new UrlEncodedFormEntity(list, "UTF-8");
                 httpPost.setEntity(form);
                 HttpResponse httpResponse = httpClient.execute(httpPost);
-
                 HttpEntity httpEntity = httpResponse.getEntity();
+
                 Log.d("DOG", readResponse(httpResponse));
                 //  ReportForDog.this.setLoginStatus(Integer.parseInt(readResponse(httpResponse)) > 0 ? true : false);
 
@@ -416,22 +471,22 @@ public class ReportForDog extends MainActivity implements View.OnClickListener, 
             // Creates an explicit intent for an Activity in your app
             Intent resultIntent = new Intent(ReportForDog.this, Volenteer.class);
 
-                // The stack builder object will contain an artificial back stack for the
-                // started Activity.
-                // This ensures that navigating backward from the Activity leads out of
-                // your application to the Home screen.
+            // The stack builder object will contain an artificial back stack for the
+            // started Activity.
+            // This ensures that navigating backward from the Activity leads out of
+            // your application to the Home screen.
             TaskStackBuilder stackBuilder = TaskStackBuilder.create(ReportForDog.this);
-                // Adds the back stack for the Intent (but not the Intent itself)
-                            stackBuilder.addParentStack(Volenteer.class);
-                // Adds the Intent that starts the Activity to the top of the stack
-                            stackBuilder.addNextIntent(resultIntent);
-                            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-                            mBuilder.setContentIntent(resultPendingIntent);
-                            NotificationManager mNotificationManager =
-                                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                     // mId allows you to update the notification later on.
-                            int mId=0;
-                             mNotificationManager.notify(mId, mBuilder.build());
+            // Adds the back stack for the Intent (but not the Intent itself)
+            stackBuilder.addParentStack(Volenteer.class);
+            // Adds the Intent that starts the Activity to the top of the stack
+            stackBuilder.addNextIntent(resultIntent);
+            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+            mBuilder.setContentIntent(resultPendingIntent);
+            NotificationManager mNotificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            // mId allows you to update the notification later on.
+            int mId=0;
+            mNotificationManager.notify(mId, mBuilder.build());
             finish();
         }
 
