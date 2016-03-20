@@ -52,8 +52,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            mga = new MyGoogleAnalytics(this, "Report Screen");
-            mga.sendEvent("visitors", "reports", "send");
+        mga = new MyGoogleAnalytics(this, "Report Screen");
+        mga.sendEvent("visitors", "reports", "send");
         session = new UserSessionManager(getApplicationContext());
         // this is fix the exeption for network calls
         if (android.os.Build.VERSION.SDK_INT > 9) {

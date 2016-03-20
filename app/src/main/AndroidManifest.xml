@@ -20,9 +20,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
 
-
     <uses-sdk
-        android:maxSdkVersion="22"
+        android:maxSdkVersion="23"
         android:minSdkVersion="17" />
     <uses-feature
         android:name="android.hardware.camera"
@@ -75,7 +74,8 @@
 
         <activity
             android:name=".LoginV"
-            android:label="@string/title_activity_login_v" >
+            android:label="@string/title_activity_login_v"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ReportedDogs"

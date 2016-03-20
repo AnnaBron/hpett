@@ -41,6 +41,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ProgressBar;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -71,6 +72,7 @@ public class ReportForDog extends ActionBarActivity implements View.OnClickListe
     private ImageButton captureBtn;
     private EditText commentsEdit;
     private ImageView previewImage;
+    private ProgressBar progressBar;
     private String imageStr = null;
     protected LocationManager locationManager;
     UserSessionManager session;
@@ -99,6 +101,7 @@ public class ReportForDog extends ActionBarActivity implements View.OnClickListe
         previewImage = (ImageView) findViewById(R.id.previewImage);
         mReportFormView = (View) findViewById(R.id.reports_form);
         mProgressView = (View) findViewById(R.id.report_progress);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         context = ReportForDog.this;
         alertDialogBuilder = new AlertDialog.Builder(context);
@@ -236,6 +239,8 @@ public class ReportForDog extends ActionBarActivity implements View.OnClickListe
             byte[] byte_arr = stream.toByteArray();
             imageStr = Base64.encodeToString(byte_arr, Base64.DEFAULT);
 
+            previewImage.setBackgroundResource(0);
+
         }
     }
 
@@ -275,6 +280,7 @@ public class ReportForDog extends ActionBarActivity implements View.OnClickListe
         this.address = getAddress();
         addressView = (TextView) findViewById(R.id.address);
         addressView.setText(this.address);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -460,7 +466,7 @@ public class ReportForDog extends ActionBarActivity implements View.OnClickListe
             addDogTask = null;
             showProgress(false);
 
-            Intent i = new Intent(getApplicationContext(), Volenteer.class);
+            Intent i = new Intent(getApplicationContext(), ReportForDog.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
             // Add new Flag to start new Activity
@@ -516,4 +522,3 @@ public class ReportForDog extends ActionBarActivity implements View.OnClickListe
         }
     }
 }
-
