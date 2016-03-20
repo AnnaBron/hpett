@@ -83,7 +83,8 @@
         </activity>
         <activity
             android:name=".ReportForDog"
-            android:label="@string/title_activity_report_for_dog" >
+            android:label="@string/title_activity_report_for_dog"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -92,11 +93,12 @@
         </activity>
         <activity
             android:name=".about_us"
-            android:label="@string/title_activity_about_us" >
+            android:label="@string/title_activity_about_us"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Volenteer"
-            android:label="@string/title_activity_volenteer" >
+            android:label="@string/title_activity_volenteer">
         </activity>
         <activity
             android:name=".ReportView"
