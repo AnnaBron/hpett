@@ -2,13 +2,17 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
+<<<<<<< HEAD
     buildToolsVersion '23.0.2'
 
+=======
+    buildToolsVersion '22.0.1'
+>>>>>>> 84a88bf709c1daafde471399070da0879f2f2c30
     useLibrary  'org.apache.http.legacy'
     defaultConfig {
         applicationId "il.co.quix.afeka.hpet"
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 23
     }
     buildTypes {
         release {

@@ -49,6 +49,7 @@ Thumbs.db
 .idea/tasks.xml
 .idea/datasources.xml
 .idea/dataSources.ids
+*.iml
 =======
 # Gradle generated files
 .gradle/
